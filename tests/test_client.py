@@ -25,6 +25,6 @@ def test_multiple_clients(letter):
 @pytest.mark.skipif(not IS_WINDOWS, reason='only valid on Windows')
 @pytest.mark.parametrize('letter', string.ascii_letters)
 def test_client_exe(letter):
-    c = Client('start_server')
+    c = Client('frozen-server')
     assert c.request(letter) == letter
     c.shutdown_server()

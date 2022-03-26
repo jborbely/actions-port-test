@@ -18,8 +18,8 @@ class Client(object):
         self._proc = None
         self._pid = None
 
-        if exe == 'start_server':
-            exe = os.path.join(os.path.dirname(__file__), exe)
+        if exe == 'frozen-server':
+            exe = os.path.join(os.path.dirname(__file__), 'start_server.exe')
 
         if port is None:
             port = utils.get_available_port()
