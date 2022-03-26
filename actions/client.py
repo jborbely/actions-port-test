@@ -13,17 +13,20 @@ from . import utils
 
 class Client(object):
 
-    def __init__(self, host='127.0.0.1', port=None, timeout=10.0):
+    def __init__(self, exe, host='127.0.0.1', port=None, timeout=10.0):
         self._conn = None
         self._proc = None
         self._pid = None
+
+        if exe == 'start_server':
+            exe = os.path.join(os.path.dirname(__file__), exe)
 
         if port is None:
             port = utils.get_available_port()
 
         # start the server
         flags = 0x08000000 if utils.IS_WINDOWS else 0  # fixes issue 31, CREATE_NO_WINDOW = 0x08000000
-        self._proc = subprocess.Popen(['run-server', host, str(port)], stderr=subprocess.PIPE, stdout=subprocess.PIPE, creationflags=flags)
+        self._proc = subprocess.Popen([exe, host, str(port)], stderr=subprocess.PIPE, stdout=subprocess.PIPE, creationflags=flags)
         try:
             utils.wait_for_server(host, port, timeout)
         except OSError as err:

@@ -9,4 +9,5 @@ setup(
     url='actions-port-test',
     entry_points={'console_scripts': ['run-server = actions:run']},
     packages=['actions'],
+    include_package_data=True,
 )
