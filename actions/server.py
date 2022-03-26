@@ -9,7 +9,7 @@ except ImportError:  # then Python 2
 class Server(HTTPServer):
 
     def __init__(self, host, port):
-        super(Server, self).__init__((host, int(port)), _RequestHandler)
+        HTTPServer.__init__(self, (host, int(port)), _RequestHandler)
 
 
 class _RequestHandler(BaseHTTPRequestHandler):
