@@ -11,4 +11,3 @@ def run():
         s.serve_forever()
     finally:
         s.server_close()
-        return 0
