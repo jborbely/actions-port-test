@@ -66,7 +66,6 @@ class Client(object):
             except OSError:
                 pass  # the server has already stopped
 
-        self._conn.sock.shutdown(socket.SHUT_RDWR)
         self._conn.close()
         self._conn = None
         return self._proc.stdout, self._proc.stderr
