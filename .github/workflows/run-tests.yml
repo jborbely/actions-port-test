@@ -52,6 +52,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install --upgrade setuptools wheel pytest
+          python -m pip install pycparser
       - name: Install actions-port-test
         run: python -m pip install --editable .
       - name: Run tests
