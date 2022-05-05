@@ -3,9 +3,13 @@ import os
 from msl.examples.loadlib import DotNet64
 from msl.loadlib import Client64
 
-from conftest import skipif_not_windows
+from conftest import (
+    skipif_not_windows,
+    skipif_no_server32,
+)
 
 
+@skipif_no_server32
 def test_dotnet64():
     for _ in range(10):
         dn = DotNet64()
