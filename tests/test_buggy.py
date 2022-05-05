@@ -11,6 +11,7 @@ from conftest import (
 
 
 @skipif_no_server32
+@skipif_not_windows
 @pytest.mark.parametrize('i', list(range(10)))
 def test_dotnet64(i):
     dn = DotNet64()
