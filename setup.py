@@ -9,5 +9,6 @@ setup(
     url='actions-port-test',
     entry_points={'console_scripts': ['run-server = actions:run']},
     packages=['actions'],
+    install_requires=['msl-loadlib @ git+https://github.com/MSLNZ/msl-loadlib.git'],
     include_package_data=True,
 )
