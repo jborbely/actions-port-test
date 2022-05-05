@@ -11,7 +11,10 @@ if sys.platform == 'win32':
     install_requires.append('comtypes')
 
 if sys.version_info[:2] <= (3, 8):
-    install_requires.append('pythonnet')
+    if sys.platform == 'darwin' and sys.version_info[:2] <= (3, 5):
+        pass
+    else:
+        install_requires.append('pythonnet')
 else:
     install_requires.append('pythonnet @ git+https://github.com/pythonnet/pythonnet.git@ac75e0ccc31c2780b57c01fe134652f1f1b90466')
 
