@@ -28,3 +28,18 @@ def test_client_exe(letter):
     c = Client('frozen-server')
     assert c.request(letter) == letter
     c.shutdown_server()
+
+
+@pytest.mark.parametrize('port', [10000, 20000, 30000, 40000, 50000, 60000, 61000, 62000])
+def test_port(port):
+    c = Client('run-server', port=port)
+    assert c._conn.port == port
+    c.shutdown_server()
+
+
+@pytest.mark.skipif(not IS_WINDOWS, reason='only valid on Windows')
+@pytest.mark.parametrize('port', [10000, 20000, 30000, 40000, 50000, 60000, 61000, 62000])
+def test_port_exe(port):
+    c = Client('frozen-server', port=port)
+    assert c._conn.port == port
+    c.shutdown_server()
