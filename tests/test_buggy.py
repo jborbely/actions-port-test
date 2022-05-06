@@ -2,7 +2,7 @@ import os
 
 import pytest
 from msl.examples.loadlib import DotNet64
-from msl.loadlib import Client64
+from msl.loadlib import Client64, ConnectionTimeoutError
 
 from conftest import (
     skipif_not_windows,
@@ -16,6 +16,8 @@ from conftest import (
 def test_dotnet64(i):
     dn = DotNet64()
     assert i+1 == dn.add_integers(i, 1)
+    assert dn.host == '127.0.0.1'
+    assert 1024 < dn.port < 60000
     dn.shutdown_server32()
 
 
@@ -67,6 +69,9 @@ def test_activex(i):
     assert isinstance(ax.load_library(), bool)
     assert ax.error1().endswith("Cannot find 'ABC.DEF.GHI' for libtype='activex'")
     assert ax.error2().endswith("Cannot find 'ABC.DEF.GHI' for libtype='activex'")
+
+    assert ax.host == '127.0.0.1'
+    assert 1024 < ax.port < 60000
 
     # no numpy warnings from comtypes
     out, err = ax.shutdown_server32()
